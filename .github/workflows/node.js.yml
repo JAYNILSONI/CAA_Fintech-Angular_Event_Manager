@@ -28,6 +28,9 @@ jobs:
 
       - name: Angular SetUp
         run: npm install -g @angular/cli
+        
+      - name: Set Node.js legacy OpenSSL flag
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
 
       - name: Build Dependency
         run: ng build
