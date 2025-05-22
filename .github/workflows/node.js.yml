@@ -1,0 +1,39 @@
+name: Fintech CAA CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    
+    - name: CheckOut
+      uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Dependency Installation
+      run: |
+        npm install jsencrypt@3.0.0-rc.1
+        npm install
+
+    - name: Angular SetUp
+      run: npm install -g @angular/cli
+      
+    - name: Build Dependency
+      run: ng build
