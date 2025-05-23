@@ -26,6 +26,7 @@
     "bulma-calendar": "^6.0.7",
     "bulma-o-steps": "^1.0.9",
     "bulma-switch": "^2.0.0",
+    "jsencrypt": "^3.0.0-rc.1",
     "mapbox-gl": "^0.54.0",
     "ngx-infinite-scroll": "^9.0.0",
     "ngx-mapbox-gl": "^4.5.0",
