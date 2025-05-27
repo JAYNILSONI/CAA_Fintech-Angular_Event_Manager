@@ -86,4 +86,4 @@ jobs:
           projectName: 'CAA-Fintech-Angular-Event'
           projectVersion: 'master'
           bomFilename: "bom.json"
-          autoCreate: true
+          autoCreate: false
