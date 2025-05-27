@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "caa_fintech-angular_event_manager"
+  IMAGE_NAME: "JAYNILSONI/caa_fintech-angular_event_manager"
 
 jobs:
   build:
@@ -57,7 +57,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GITHUBPACKAGETOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
