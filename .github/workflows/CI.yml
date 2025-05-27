@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "JAYNILSONI/caa_fintech-angular_event_manager"
+  IMAGE_NAME: "jaynilsoni/caa_fintech-angular_event_manager"
 
 jobs:
   build:
