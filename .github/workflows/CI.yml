@@ -19,6 +19,13 @@ jobs:
       - name: CheckOut
         uses: actions/checkout@v4
 
+      - name: Checkout deployment files repo
+        uses: actions/checkout@v4
+        with:
+          repository: JAYNILSONI/Kubernetes_Deployment_Files
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: deploymentfiles
+
       - name: Set short SHA
         id: vars
         run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
