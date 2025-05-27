@@ -85,5 +85,5 @@ jobs:
           apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
           projectName: 'CAA-Fintech-Angular-Event'
           projectVersion: 'master'
-          bomFilename: "bom.xml"
+          bomFilename: "bom.json"
           autoCreate: true
