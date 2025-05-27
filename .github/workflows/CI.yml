@@ -28,7 +28,9 @@ jobs:
 
       - name: Set short SHA
         id: vars
-        run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        run: |
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          echo ${{ env.SHORT_SHA }}  
         
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
@@ -76,7 +78,20 @@ jobs:
       
       - name: Trivy Scan
         run: |
-          trivy image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }}
+          trivy image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }} \
+            | tee caa_${{ env.SHORT_SHA }}.txt
+        working-directory: deploymentfiles/task
+
+      - name: Count vulnerabilities
+        run: ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
+
+      - name: Cat each alert file
+        run: |
+          cat unknown_alerts.txt
+          cat low_alerts.txt
+          cat medium_alerts.txt
+          cat high_alerts.txt
+          cat critical_alerts.txt
 
       - name: CycloneDX SetUp
         run: |
@@ -93,3 +108,5 @@ jobs:
           project: ${{ secrets.DEPENDENCYTRACK_PROJECT_ID }}
           bomFilename: "bom.json"
           autoCreate: false
+
+      
