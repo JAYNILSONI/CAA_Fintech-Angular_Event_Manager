@@ -83,7 +83,10 @@ jobs:
         working-directory: deploymentfiles/task
 
       - name: Count vulnerabilities
-        run: ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
+        run: |
+          echo "Count Critical and High Alerts of the docker image..."
+          chmod +x trivy_image_counter.bash
+          ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
 
       - name: Cat each alert file
         run: |

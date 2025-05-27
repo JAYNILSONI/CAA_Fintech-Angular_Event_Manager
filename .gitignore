@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-bom.
+bom.json
 dist.zip
 /tmp
 /out-tsc
