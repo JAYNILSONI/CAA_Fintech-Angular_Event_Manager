@@ -29,8 +29,7 @@ jobs:
       - name: Set short SHA
         id: vars
         run: |
-          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo ${{ env.SHORT_SHA }}  
+          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV 
         
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
@@ -87,6 +86,7 @@ jobs:
           echo "Count Critical and High Alerts of the docker image..."
           chmod +x trivy_image_counter.bash
           ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
+        working-directory: deploymentfiles/task
 
       - name: Cat each alert file
         run: |
@@ -95,6 +95,7 @@ jobs:
           cat medium_alerts.txt
           cat high_alerts.txt
           cat critical_alerts.txt
+        working-directory: deploymentfiles/task
 
       - name: CycloneDX SetUp
         run: |
@@ -111,5 +112,3 @@ jobs:
           project: ${{ secrets.DEPENDENCYTRACK_PROJECT_ID }}
           bomFilename: "bom.json"
           autoCreate: false
-
-      
