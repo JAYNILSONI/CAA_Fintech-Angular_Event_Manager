@@ -88,15 +88,6 @@ jobs:
           ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
         working-directory: deploymentfiles/task
 
-      - name: Cat each alert file
-        run: |
-          cat unknown_alerts.txt
-          cat low_alerts.txt
-          cat medium_alerts.txt
-          cat high_alerts.txt
-          cat critical_alerts.txt
-        working-directory: deploymentfiles/task
-
       - name: CycloneDX SetUp
         run: |
           npm install @cyclonedx/bom --save-dev -y
