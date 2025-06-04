@@ -86,7 +86,7 @@ jobs:
           echo "Count Critical and High Alerts of the docker image..."
           chmod +x trivy_image_counter.bash
           ./trivy_image_counter.bash caa_${{ env.SHORT_SHA }}.txt
-        working-directory: deploymentfiles/task
+        working-directory: deploymentfiles/bashScript
 
       - name: CycloneDX SetUp
         run: |
