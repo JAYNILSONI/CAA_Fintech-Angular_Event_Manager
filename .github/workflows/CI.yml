@@ -103,3 +103,17 @@ jobs:
           project: ${{ secrets.DEPENDENCYTRACK_PROJECT_ID }}
           bomFilename: "bom.json"
           autoCreate: false
+
+      - name: Update Manifest
+        run: | 
+          echo "ci manifest update"
+          chmod +x ./bashScript/tag_update.bash
+          ./bashScript/tag_update.bash master deployment ${{ env.SHORT_SHA }} dev fintech-caa
+
+          git config user.name "CI Bot"
+          git config user.email "ci@jaynilsoni.dev"
+          git add manifest/fintech-caa/deployment.yaml
+          git commit -m "Update image tag to ${{ env.SHORT_SHA }} for caa"
+          git push origin dev
+        working-directory: deploymentfiles
+      
