@@ -108,7 +108,7 @@ jobs:
         run: | 
           echo "ci manifest update"
           chmod +x ./bashScript/tag_update.bash
-          ./bashScript/tag_update.bash master caa_fintech-angular_event_manager deployment ${{ env.SHORT_SHA }} dev fintech-caa
+          ./bashScript/tag_update.bash master deployment caa_fintech-angular_event_manager ${{ env.SHORT_SHA }} dev fintech-caa
 
           git config user.name "CI Bot"
           git config user.email "ci@jaynilsoni.dev"
